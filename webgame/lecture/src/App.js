@@ -1,11 +1,11 @@
 import React from "react";
-import Gugudan from "./Gugudan";
+import RelayWord from "./RelayWord";
 
 const App = () => {
   return (
-    <div>
-      <Gugudan />
-    </div>
+    <>
+      <RelayWord />
+    </>
   );
 };
 
