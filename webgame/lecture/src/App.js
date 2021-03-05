@@ -1,10 +1,10 @@
 import React from "react";
-import reactionSpeed from "./reactionSpeed";
+import ReactionSpeed from "./ReactionSpeed";
 
 const App = () => {
   return (
     <>
-      <reactionSpeed />
+      <ReactionSpeed />
     </>
   );
 };

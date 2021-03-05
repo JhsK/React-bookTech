@@ -1,4 +1,16 @@
-.container {
+#section {
   width: 300px;
   height: 300px;
+}
+
+#section.wating {
+  background-color: aqua;
+}
+
+#section.ready {
+  background-color: red;
+}
+
+#sectoin.now {
+  background-color: green;
 }
