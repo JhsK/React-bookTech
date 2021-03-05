@@ -1,10 +1,10 @@
 import React from "react";
-import RelayWord from "./RelayWord";
+import reactionSpeed from "./reactionSpeed";
 
 const App = () => {
   return (
     <>
-      <RelayWord />
+      <reactionSpeed />
     </>
   );
 };
