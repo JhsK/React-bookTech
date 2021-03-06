@@ -1,10 +1,10 @@
 import React from "react";
-import ReactionSpeed from "./ReactionSpeed";
+import Lotto from "./Lotto";
 
 const App = () => {
   return (
     <>
-      <ReactionSpeed />
+      <Lotto />
     </>
   );
 };

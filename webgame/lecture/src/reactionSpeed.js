@@ -10,10 +10,10 @@ const ReactionSpeed = () => {
   const endTime = useRef();
 
   const onClickScreen = () => {
-    if (state === "watitng") {
-      console.log("Test");
+    console.log(typeof state);
+    if (state === "wating") {
       setState("ready");
-      setResult("초록색이 나오면 클릭하세요");
+      setTitle("초록색이 나오면 클릭하세요");
 
       randomGreen.current = setTimeout(() => {
         setState("now");
@@ -23,9 +23,9 @@ const ReactionSpeed = () => {
     } else if (state === "ready") {
       setState("wating");
       setTitle("성급하셨군요! 초록색이 나오면 클릭하세요");
-      clearTimeout(randomGreen);
+      clearTimeout(randomGreen.current);
     } else if (state === "now") {
-      state("wating");
+      setState("wating");
       setTitle("클릭해서 시작하세요");
       endTime.current = new Date();
       setResult((preResult) => {
@@ -46,7 +46,7 @@ const ReactionSpeed = () => {
       <div id="section" className={state} onClick={onClickScreen}>
         {title}
       </div>
-      {AvgSpeed}
+      {AvgSpeed()}
     </>
   );
 };
