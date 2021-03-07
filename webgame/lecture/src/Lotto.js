@@ -1,6 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import Balls from "./Balls";
 
 function RandomNumber() {
+  console.log("RandomNumber start");
   const beginArray = Array(45)
     .fill()
     .map((v, i) => i + 1);
@@ -18,7 +26,8 @@ function RandomNumber() {
 }
 
 const Lotto = () => {
-  const [checkNum, setCheckNum] = useState(RandomNumber());
+  const numberCreator = useMemo(() => RandomNumber(), []);
+  const [checkNum, setCheckNum] = useState(numberCreator);
   const [renderNum, setRenderNum] = useState([]);
   const [bonusNum, setBonusNum] = useState(null);
   const [state, setState] = useState(false);
@@ -32,11 +41,11 @@ const Lotto = () => {
         console.log("setTimeOut");
         console.log(checkNum[i]);
         setRenderNum((prevRender) => [...prevRender, checkNum[i]]);
-        console.log(renderNum);
       }, (i + 1) * 1000);
     }
     intervalReact.current[6] = setTimeout(() => {
       setBonusNum(checkNum[6]);
+      setState(true);
     }, 7000);
     return () => {
       intervalReact.current.forEach((v) => {
@@ -45,16 +54,24 @@ const Lotto = () => {
     };
   }, [intervalReact.current]);
 
+  const onClickReset = useCallback(() => {
+    setCheckNum(RandomNumber);
+    setRenderNum([]);
+    setBonusNum(null);
+    setState(false);
+    intervalReact.current = [];
+  }, [checkNum]);
+
+  const returnRenaderNum = renderNum.map((v) => <Balls key={v} number={v} />);
+
   return (
-    <>
+    <div>
       <div>당첨 숫자</div>
-      {renderNum.map((number) => {
-        <div className="LottoBall" key={number}>
-          {number}
-        </div>;
-      })}
-      {/* {console.log(renderNum)} */}
-    </>
+      {returnRenaderNum && returnRenaderNum}
+      <div>보너스 숫자</div>
+      {bonusNum && <Balls number={bonusNum} />}
+      {state && <button onClick={onClickReset}>다시하기</button>}
+    </div>
   );
 };
 
