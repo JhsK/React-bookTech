@@ -13,13 +13,11 @@ const StyledButton = styled.button`
   cursor: pointer;
 
   background: ${palette.gray[8]};
-  &:hober {
+  &:hover {
     background: ${palette.gray[6]};
   }
 `;
 
-const Button = (props) => {
-  <StyledButton {...props} />;
-};
+const Button = (props) => <StyledButton {...props} />;
 
 export default Button;
